@@ -49,7 +49,6 @@ class SlidingWindowRateLimiter:
             # Якщо користувача немає, створюємо нову чергу
             if user_id not in self.user_requests:
                 self.user_requests[user_id] = deque()
-            # Додаємо позначку часу для повідомлення
             self.user_requests[user_id].append(current_time)
             return True
         return False
@@ -72,10 +71,7 @@ class SlidingWindowRateLimiter:
 
 # Демонстрація роботи
 def test_rate_limiter():
-    """
-    Тестова функція для демонстрації роботи Rate Limiter.
-    """
-    # Створюємо rate limiter: вікно 10 секунд, 1 повідомлення
+    # Створюємо rate limiter: вікно 10 сек, 1 повідомлення
     limiter = SlidingWindowRateLimiter(window_size=10, max_requests=1)
 
     # Симулюємо потік повідомлень від користувачів (послідовні ID від 1 до 20)
